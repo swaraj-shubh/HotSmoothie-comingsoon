@@ -1,0 +1,6 @@
+.env*
+test
+node_modules
+assets/coming-soon/Crocodile*
+assets/coming-soon/Streetwear*
+assets/coming-soon/Ornate*
