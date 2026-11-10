@@ -33,7 +33,9 @@
       }
       cx += (tx - cx) * 0.06;
       cy += (ty - cy) * 0.06;
-      for (const { el, d } of layers) el.style.translate = `${(cx * d).toFixed(2)}px ${(cy * d * 0.6).toFixed(2)}px`;
+      // Snap to whole device pixels: fractional offsets make the browser resample the artwork, which softens it.
+      const dpr = window.devicePixelRatio || 1, snap = (v) => (Math.round(v * dpr) / dpr).toFixed(3);
+      for (const { el, d } of layers) el.style.translate = `${snap(cx * d)}px ${snap(cy * d * 0.6)}px`;
       tilt.style.transform = `rotateY(${(cx * 3.5).toFixed(2)}deg) rotateX(${(-cy * 2.5).toFixed(2)}deg)`;
       raf = requestAnimationFrame(frame);
     };
