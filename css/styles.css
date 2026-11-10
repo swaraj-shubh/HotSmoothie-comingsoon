@@ -1,11 +1,10 @@
 /* The Hot Smoothie Co. — storefront styles
    Tokens mirror the Figma file "The Hot Smoothie Co." (page: Final Suyash).
-   Display font: Apfel Grotezk (licensed). Drop the font into the OS / add an @font-face
-   below and it takes over; until then Space Grotesk stands in. */
+   Display font: Apfel Grotezk, served from assets/fonts; Space Grotesk stands in while it loads. */
 
 @font-face {
   font-family: "Apfel Grotezk";
-  src: local("Apfel Grotezk"), local("ApfelGrotezk-Regular");
+  src: local("Apfel Grotezk"), local("ApfelGrotezk-Regular"), url("../assets/fonts/ApfelGrotezk-Regular.otf") format("opentype");
   font-weight: 400;
   font-display: swap;
 }
