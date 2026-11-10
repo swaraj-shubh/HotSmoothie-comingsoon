@@ -51,7 +51,7 @@ html { height: 100%; overscroll-behavior: none; -webkit-tap-highlight-color: tra
 }
 .letters--wide { max-width: none; }
 
-.l-letters-m { display: none; position: absolute; left: 0; right: 0; top: max(calc(46px + env(safe-area-inset-top)), calc(var(--st) + var(--sh) * .266 - min(150px, var(--lw) * .448))); height: 0; }
+.l-letters-m { display: none; position: absolute; left: 0; right: 0; top: max(calc(46px + env(safe-area-inset-top)), calc(var(--st) + var(--sh) * .266 - var(--lw) * .6 + min(55px, var(--lw) * .16))); height: 0; }
 .l-letters-m .letters--coming { position: absolute; width: var(--lw); left: calc(50vw - var(--lw) * .5465); top: 0; height: auto; }
 .l-letters-m .letters--soon { position: absolute; width: calc(var(--lw) * .744); left: calc(50vw - var(--lw) * .2093); top: calc(var(--lw) * .2267); height: auto; animation-delay: 1.65s; }
 
@@ -135,10 +135,10 @@ html { height: 100%; overscroll-behavior: none; -webkit-tap-highlight-color: tra
   :root {
     --card-h: 306px;
     --fx: .485;
-    --free: calc(100 * var(--vh) - var(--card-h) - 24px);                  /* height above the card */
-    --sw: max(120vw, min(165vw, calc(var(--free) * 2)));                   /* shrinks only when the screen is too short */
+    --avail: calc(100 * var(--vh) - var(--card-h) - 80px);                 /* height above the card, minus the top margin and the rug's gap */
+    --sw: max(108vw, min(165vw, calc(var(--avail) * 1.5)));                /* artwork and lettering both shrink with the space left, so the characters never cover the words */
     --sl: calc(50% - var(--sw) * var(--fx));
-    --lw: min(86vw, 660px, calc(var(--free) * 1.05));
+    --lw: min(86vw, 660px, calc(var(--avail) * .9));
     --st: max(calc(var(--sh) * -.1), calc(100 * var(--vh) - var(--card-h) - 34px - var(--sh) * .86));
   }
   .sky { background: linear-gradient(#8a7459 0, #9a8265 calc(var(--st) + var(--sh) * .6), #b79b78 calc(var(--st) + var(--sh) * .7), #c6a985 100%); }  /* continues the wall where the artwork fades out */
