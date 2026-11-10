@@ -113,8 +113,13 @@ html { height: 100%; overscroll-behavior: none; -webkit-tap-highlight-color: tra
 @keyframes shake { 10%, 90% { transform: translateX(-2px); } 20%, 80% { transform: translateX(4px); } 30%, 50%, 70% { transform: translateX(-6px); } 40%, 60% { transform: translateX(6px); } }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
-.cs .ticket-btn { -webkit-appearance: none; appearance: none; width: 100%; line-height: 1.4; --notch: #ffe4c2; overflow: hidden; /* Figma clips the notches to the button, so they read as half-circles punched into each end */ cursor: pointer; transition: transform .2s var(--ease), filter .2s, box-shadow .2s; }
-.cs .ticket-btn:hover { transform: translateY(-2px); filter: brightness(1.07); box-shadow: 0 8px 18px rgba(200, 38, 30, .32); }
+/* Join button: a half-circle is cut out of each end with a mask, so the glass card shows through the notches. */
+.cs .ticket-btn { -webkit-appearance: none; appearance: none; width: 100%; line-height: 1.4; cursor: pointer; transition: transform .2s var(--ease), filter .2s;
+  -webkit-mask-image: radial-gradient(circle 8px at 0 50%, transparent 7.5px, #000 8px), radial-gradient(circle 8px at 100% 50%, transparent 7.5px, #000 8px);
+  mask-image: radial-gradient(circle 8px at 0 50%, transparent 7.5px, #000 8px), radial-gradient(circle 8px at 100% 50%, transparent 7.5px, #000 8px);
+  -webkit-mask-composite: source-in; mask-composite: intersect; }
+.cs .ticket-btn::before, .cs .ticket-btn::after { content: none; }
+.cs .ticket-btn:hover { transform: translateY(-2px); filter: brightness(1.07); }
 .cs .ticket-btn:active { transform: translateY(0) scale(.985); }
 .cs .ticket-btn.is-loading { pointer-events: none; animation: breathe 1s ease-in-out infinite; }
 @keyframes breathe { 50% { filter: brightness(.88); } }
