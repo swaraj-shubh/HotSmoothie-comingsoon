@@ -4,6 +4,10 @@
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const $ = (s, r = document) => r.querySelector(s);
 
+  /* iOS Safari ignores user-scalable=no, so stop pinch-zoom (which let the page shrink away from the screen edges) by hand. */
+  for (const t of ["gesturestart", "gesturechange", "gestureend"]) document.addEventListener(t, (e) => e.preventDefault(), { passive: false });
+  document.addEventListener("touchmove", (e) => { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
+
   /* ---------- parallax + spotlight + card tilt ---------- */
   const layers = [...document.querySelectorAll("[data-depth]")].map((el) => ({ el, d: parseFloat(el.dataset.depth) }));
   const tilt = $("#tilt");
