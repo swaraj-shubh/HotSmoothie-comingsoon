@@ -23,6 +23,10 @@
 @supports (height: 1dvh) { :root { --vh: 1dvh; } }
 
 html { height: 100%; overscroll-behavior: none; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }  /* pinch-zoom in stays available; double-tap zoom is off */
+/* Nothing on the page can be selected, long-pressed, dragged or copied (js/coming-soon.js blocks the copy and menu events).
+   The email box stays normal so people can type, paste and fix their address. */
+.cs-body, .cs-body * { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-user-drag: none; }
+.cs-body input { -webkit-user-select: text; user-select: text; -webkit-touch-callout: default; }
 .cs-body { -webkit-text-size-adjust: 100%; margin: 0; background: linear-gradient(58deg, #f7f6f5 2.5%, #ded2bf 59.7%, #d8cbb6 100%); overflow: hidden; height: 100%; overscroll-behavior: none; }
 .cs { position: relative; height: calc(100 * var(--vh)); overflow: hidden; isolation: isolate; }
 .world { position: absolute; inset: 0; }

@@ -12,6 +12,12 @@
     if (e.touches.length > 1 && e.scale !== undefined && e.scale < 1 && (!vv || vv.scale <= 1.001)) e.preventDefault();
   }, { passive: false });
 
+  /* No copying, right-click/long-press menu, dragging or selecting anywhere except inside the email box. */
+  const inField = (e) => e.target instanceof Element && e.target.closest("input");
+  for (const type of ["copy", "cut", "contextmenu", "dragstart", "selectstart"]) {
+    document.addEventListener(type, (e) => { if (!inField(e)) e.preventDefault(); });
+  }
+
   /* ---------- parallax + spotlight + card tilt ---------- */
   const layers = [...document.querySelectorAll("[data-depth]")].map((el) => ({ el, d: parseFloat(el.dataset.depth) }));
   const tilt = $("#tilt");
