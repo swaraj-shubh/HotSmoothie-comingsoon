@@ -42,7 +42,8 @@ function sendWelcome(to) {
   return transport.sendMail({
     from: { name: "The Hot Smoothie Co.", address: process.env.SMTP_USER },
     to,
-    headers: { "List-Unsubscribe": `<mailto:${process.env.SMTP_USER}?subject=unsubscribe>` },
+    // ponytail: no List-Unsubscribe header; it marks a one-off welcome as bulk mail. Add a one-click
+    // unsubscribe link before sending launch announcements to the whole list.
     ...welcomeEmail({ siteUrl: process.env.SITE_URL ?? "https://hotsmoothie.in" }),
   })
 }
