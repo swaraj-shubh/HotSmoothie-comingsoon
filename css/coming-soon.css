@@ -6,7 +6,7 @@
 :root {
   --vh: 1vh;                                         /* older iOS Safari: see @supports below */
   --ratio: 1.7762;                                   /* 1984 / 1117: the artwork layers in the Figma frame "coming soon" */
-  --sw: max(100vw, calc(100 * var(--vh) * var(--ratio))); /* artwork "stage" always covers the screen */
+  --sw: max(calc(100vw + 24px), calc((100 * var(--vh) + 16px) * var(--ratio))); /* artwork "stage" covers the screen with spare edge for the 8px parallax travel (24px wide: --sl puts 39% of it on the right) */
   --sh: calc(var(--sw) / var(--ratio));
   --fx: .5;                                          /* portrait focus point */
   --st: calc((100 * var(--vh) - var(--sh)) / 2);     /* stage top */
