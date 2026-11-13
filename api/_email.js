@@ -11,7 +11,7 @@ const LINES = [
 ]
 
 export function welcomeEmail({ siteUrl }) {
-  const site = siteUrl.replace(/^https?:\/\//, "")
+  const site = siteUrl.replace(/^https?:\/\/|\/$/g, "")
   const footer = `You're getting this because this address joined the waiting list on ${site}. Not you, or changed your mind? Reply "unsubscribe" and we'll remove you.`
   return {
     subject: "You're on the Hot Smoothie Co. list",
